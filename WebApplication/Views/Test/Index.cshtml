@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebApplication.Models.Test.PreviewTestViewModel>
+
+@using (Ajax.BeginForm("SearchTest", "Test",
+new AjaxOptions { UpdateTargetId = "tests", HttpMethod = "GET", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="form-inline search_by_keyword">
+        <input class="form-control" name="keyWord"/>
+
+        <input type="submit" value="Search" class="btn btn-default" />
+
+        @if (User.IsInRole("admin"))
+        {
+            @Html.ActionLink("Create new test", "Create", "Test", null, new { @class = "btn btn-default" })
+        }
+
+    </div>
+}
+
+<div id="tests" class="all_tests">
+    @Html.Partial("~/Views/Test/_Tests.cshtml", Model)
+</div>

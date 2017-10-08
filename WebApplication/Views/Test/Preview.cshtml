@@ -1,0 +1,15 @@
+﻿@model WebApplication.Models.Test.PreviewTestViewModel
+
+<div class="test_preview">
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+
+    <h3>@Html.DisplayFor(model => model.Description)</h3>
+
+    @if (User.IsInRole("user"))
+    {
+        @Html.ActionLink("Begin!", "PassTest", "Test", new { id = Model.Id }, new { @class = "button test_preview__btn" })
+        <br /><br />
+        @ViewBag.Message
+    }
+</div>
+

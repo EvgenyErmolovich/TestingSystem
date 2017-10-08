@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebApplication.Models.Statistic.StatisticViewModel>
+
+<div class="statistic_header">
+    @using (Ajax.BeginForm("FilterStatistic", "Statistic",
+    new AjaxOptions { UpdateTargetId = "statistics", HttpMethod = "GET", InsertionMode = InsertionMode.Replace }))
+    {
+        <div class="form-inline">
+            @Html.DropDownList("testId", ViewBag.Tests as SelectList, htmlAttributes: new { @class = "form-control" })
+
+            @Html.DropDownList("sortType", ViewBag.SortType as SelectList, htmlAttributes: new { @class = "form-control" })
+
+            <input type="submit" value="Sort" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+<div class="statistic_all">
+    <div id="statistics">
+        @Html.Partial("~/Views/Statistic/_Statistics.cshtml", Model)
+    </div>
+</div>
+   

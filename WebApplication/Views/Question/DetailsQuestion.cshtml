@@ -1,0 +1,58 @@
+﻿@model WebApplication.Models.Question.QuestionViewModel
+
+<div class="details_quest">
+    @Html.ActionLink("<< Go to test details", "Details", "Test", new { id = Model.TestId }, new { @class = "btn btn-default" })
+    <br /><br />
+
+    @Html.HiddenFor(model => model.Id)
+
+    <h1>
+        @Html.DisplayFor(model => model.Text)
+    </h1>
+
+    @if (Model.Img != null)
+    {
+        <img width="350" height="200" src="@Url.Action("GetImage", "Question", new { id = Model.Id })" />        <br /><br />
+    }
+
+    <p>
+        @Html.ActionLink("Edit question", "Edit", "Question", new { id = Model.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Delete question", "Delete", "Question", new { id = Model.Id }, new { @class = "btn btn-default" })
+    </p>
+    <hr />
+
+    <div id="answers">
+        @if (Model.Answers != null && Model.Answers?.Count != 0)
+        {
+            <h3>Answers:</h3>
+            @Html.ActionLink("Create answer", "Create", "Answer", new { questionId = Model.Id, testId = Model.TestId }, new { @class = "btn btn-default" })
+
+            <div class="details_quest__answers">
+                @foreach (var item in Model.Answers)
+                {
+                    <div class="details_quest__answer col-md-4">
+                        <div>
+                            <h3>
+                                @Html.DisplayFor(i => item.Right)
+                                @Html.DisplayFor(i => item.Text)
+                            </h3>
+                            <br />
+
+                            @Html.ActionLink("Details", "Details", "Answer", new { id = item.Id }, new { @class = "btn btn-default" })
+                            @Html.ActionLink("Edit", "Edit", "Answer", new { id = item.Id }, new { @class = "btn btn-default" })
+                            @Html.ActionLink("Delete", "Delete", "Answer", new { id = item.Id }, new { @class = "btn btn-default" })
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            @Html.ActionLink("Create answer", "Create", "Answer", new { questionId = Model.Id, testId = Model.TestId }, new { @class = "btn btn-default" })
+        }
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,47 @@
+﻿@model WebApplication.Models.Test.TestViewModel
+
+<div class="delete_test__header">
+    <h2>Delete test</h2>
+</div>
+
+<div class="delete_test">
+    @Html.ActionLink("<< Go to test details", "Details", "Test", new { id = Model.Id }, new { @class = "btn btn-default" })
+
+    <h2>Are you sure you want to delete this test?</h2>
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinPercentage, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.MinPercentage)
+            </div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <div class="form-actions no-color col-md-offset-2 col-md-10">
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

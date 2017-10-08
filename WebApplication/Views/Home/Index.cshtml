@@ -1,0 +1,15 @@
+﻿<div>
+    <div>
+        <div>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "btn btn-default"})
+                @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-default" })
+            }
+            else
+            {
+                @Html.ActionLink("Tests", "Index", "Test", null, new { @class = "btn btn-default" })
+            }
+        </div>
+    </div>
+</div>
